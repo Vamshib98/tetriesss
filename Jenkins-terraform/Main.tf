@@ -1,5 +1,5 @@
 resource "aws_iam_role" "example_role" {
-  name = "Jenkins-terraform"
+  name = "Jenkins-terraform1"
   assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",
@@ -22,7 +22,7 @@ resource "aws_iam_role_policy_attachment" "example_attachment" {
 }
 
 resource "aws_iam_instance_profile" "example_profile" {
-  name = "Jenkins-terraform"
+  name = "Jenkins-terraform1"
   role = aws_iam_role.example_role.name
 }
 
@@ -59,9 +59,9 @@ resource "aws_security_group" "Jenkins-sg" {
 }
 
 resource "aws_instance" "web" {
-  ami                    = "ami-0cd59ecaf368e5ccf"
+  ami                    = "ami-0e001c9271cf7f3b9"
   instance_type          = "t2.large"
-  key_name               = "tetris-v1"
+  key_name               = "tetris111"
   vpc_security_group_ids = [aws_security_group.Jenkins-sg.id]
   user_data              = templatefile("./install_jenkins.sh", {})
   iam_instance_profile   = aws_iam_instance_profile.example_profile.name
